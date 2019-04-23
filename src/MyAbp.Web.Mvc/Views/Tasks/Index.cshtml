@@ -1,0 +1,46 @@
+﻿@model MyAbp.Web.Models.Tasks.IndexViewModel
+@{
+    ViewBag.Title = L("Tasks");
+    ViewBag.ActiveMenu = "Tasks";
+}
+@section scripts
+    {
+    <environment names="Development">
+        <script src="~/view-resources/Views/Tasks/index.js"></script>
+    </environment>
+
+    <environment names="Staging,Production">
+        <script src="~/view-resources/Views/Tasks/index.min.js"></script>
+    </environment>
+}
+    <h2>
+        @L("Tasks")
+        <a class="btn btn-primary btn-sm" asp-action="Create">@L("AddNew")</a>
+        <span class="pull-right">
+            @Html.DropDownListFor(
+               model => model.SelectedTaskState,
+               Model.GetTasksStateSelectListItems(LocalizationManager),
+               new
+               {
+                   @class = "form-control",
+                   id = "TaskStateCombobox"
+               })
+        </span>
+    </h2>
+
+<div class="row">
+    <div>
+        <ul class="list-group" id="Tasks">
+            @foreach (var task in Model.Tasks)
+            {
+                <li class="list-group-item">
+                    <span class="pull-right label @Model.GetTaskLabel(task)">@L($"TaskState_{task.State}")</span>
+                    <h4 class="list-group-item-heading">@task.Title</h4>
+                    <div class="list-group-item-text">
+                        @task.CreationTime.ToString("yyyy-MM-dd HH:mm:ss") | <span class="text-warning">@(task.AssignedPersonName ?? L("Unassigned"))</span>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
