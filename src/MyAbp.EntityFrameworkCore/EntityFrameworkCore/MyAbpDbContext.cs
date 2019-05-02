@@ -5,6 +5,7 @@ using MyAbp.Authorization.Users;
 using MyAbp.MultiTenancy;
 using MyAbp.Authorization.Tasks;
 using MyAbp.Authorization.People;
+using MyAbp.Authorization.MovieTickets;
 
 namespace MyAbp.EntityFrameworkCore
 {
@@ -13,6 +14,7 @@ namespace MyAbp.EntityFrameworkCore
         /* Define a DbSet for each entity of the application */
         public DbSet<Task> Tasks { get; set; }
         public DbSet<Person> People { get; set; }
+        public DbSet<MovieTicket> MovieTickets { get; set; }
         
         public MyAbpDbContext(DbContextOptions<MyAbpDbContext> options)
             : base(options)

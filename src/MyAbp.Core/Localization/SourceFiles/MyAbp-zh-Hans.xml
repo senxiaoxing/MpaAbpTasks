@@ -106,6 +106,15 @@
     <text name="Save">保存</text>
     <text name="AddNew">添加新任务</text>
     <text name="AssignedPerson">分配人员</text>
+
+    <text name="Movies">电影票</text>
+    <text name="MovieName">电影名称</text>
+    <text name="MovieActor">演员名称</text>
+    <text name="StartTime">开始时间</text>
+    <text name="EndTime">结束时间</text>
+    <text name="Money">票价</text>
+    <text name="CreateNewMovie">创建新电影</text>
+    <text name="MultiMovie">电影专栏</text>
   </texts>
 </localizationDictionary>
 

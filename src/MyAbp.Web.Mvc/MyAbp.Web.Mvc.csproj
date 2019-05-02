@@ -54,6 +54,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\Tasks\" />
+    <Folder Include="wwwroot\lib\datatables\" />
+    <Folder Include="wwwroot\lib\jquery-daterangepicker\" />
     <Folder Include="wwwroot\view-resources\Views\_Bundles\" />
   </ItemGroup>
 </Project>

@@ -56,6 +56,20 @@ namespace MyAbp.Web.Startup
                 )
                 .AddItem(
                     new MenuItemDefinition(
+                        "MultiMovie",
+                        L("MultiMovie"),
+                        icon: "menu"
+                        ).AddItem(
+                        new MenuItemDefinition(
+                            PageNames.MovieTicket,
+                            L("Movies"),
+                            url: "MovieTicket",
+                            requiresAuthentication: true
+                            )
+                        )
+                )
+                .AddItem(
+                    new MenuItemDefinition(
                         PageNames.About,
                         L("About"),
                         url: "About",

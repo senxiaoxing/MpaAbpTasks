@@ -7,6 +7,7 @@ using Abp.EntityFrameworkCore.Uow;
 using Abp.MultiTenancy;
 using MyAbp.EntityFrameworkCore.Seed.Host;
 using MyAbp.EntityFrameworkCore.Seed.Tenants;
+using MyAbp.EntityFrameworkCore.Seed.ModelSeed;
 
 namespace MyAbp.EntityFrameworkCore.Seed
 {
@@ -27,6 +28,9 @@ namespace MyAbp.EntityFrameworkCore.Seed
             // Default tenant seed (in host database).
             new DefaultTenantBuilder(context).Create();
             new TenantRoleAndUserBuilder(context, 1).Create();
+
+            //MovieTicket seed
+            new DefaultMovieTicketCreator(context).Create();
         }
 
         private static void WithDbContext<TDbContext>(IIocResolver iocResolver, Action<TDbContext> contextAction)

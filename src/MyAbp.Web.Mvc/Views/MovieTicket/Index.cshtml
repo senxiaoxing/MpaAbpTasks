@@ -1,0 +1,122 @@
+﻿@using Abp.Authorization.Users
+@using MyAbp.Web.Startup
+@model IList<MyAbp.Movie.Dto.MovieTicketDto>
+@{
+    ViewBag.CurrentPageName = PageNames.MovieTicket; // The menu item will be active for this page.
+}
+@section scripts
+    {
+    <script src="~/lib/jquery-daterangepicker/daterangepicker.js" asp-append-version="true"></script>
+    <script src="~/view-resources/Views/Movie/Index.js" asp-append-version="true"></script>
+
+    <link href="~/lib/jquery-daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <link href="~/lib/datatables/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="~/lib/datatables/jquery.dataTables.min.js"></script>
+}
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @L("Movies")
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a id="RefreshButton" href="javascript:void(0);" class="waves-effect waves-block"><i class="material-icons">refresh</i>@L("Refresh")</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body table-responsive">
+                <table id="MovieTable" name="MovieTable"></table>
+                <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float pull-right" data-toggle="modal" data-target="#MovieTicketCreateModal">
+                    <i class="material-icons">add</i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="MovieTicketCreateModal" tabindex="-1" role="dialog" aria-labelledby="MovieCreateModalLabel" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    <span>@L("CreateNewMovie")</span>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form name="movieCreateForm" role="form" novalidate class="form-validation">
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane animated fadeIn active" id="create-user-details">
+                            <div class="row clearfix" style="margin-top:10px;">
+                                <div class="col-sm-12">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input id="MovieName" type="text" name="MovieName" required maxlength="256" class="validate form-control">
+                                            <label for="MovieName" class="form-label">@L("MovieName")</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-sm-12">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input id="MovieActor" type="text" name="MovieActor" required maxlength="256" class="validate form-control">
+                                            <label for="MovieActor" class="form-label">@L("MovieActor")</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input id="StartTime" type="datetime" name="StartTime" class="form-control">
+                                            @*<label for="StartTime" class="form-label">@L("StartTime")</label>*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input id="EndTime" type="datetime" name="EndTime" class="form-control">
+                                            @*<label for="EndTime" class="form-label">@L("EndTime")</label>*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-sm-12">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input id="Money" type="number" name="Money" class="form-control">
+                                            <label for="Money" class="form-label">@L("Money")</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">@L("Cancel")</button>
+                                <button type="submit" class="btn btn-primary waves-effect">@L("Save")</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="MovieTicketEditModal" tabindex="-1" role="dialog" aria-labelledby="MovieTicketEditModalLabel" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
