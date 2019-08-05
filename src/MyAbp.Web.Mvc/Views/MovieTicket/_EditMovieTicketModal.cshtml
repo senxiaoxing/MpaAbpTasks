@@ -1,4 +1,70 @@
-﻿
-@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using MyAbp.Web.Models.Common.Modals
+@model MyAbp.Web.Models.MovieTicket.EditMovieTicketModalViewModel
+@{
+    Layout = null;
+}
+@Html.Partial("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("EditMovie")))
+
+<div class="modal-body">
+    <form name="MovieEditForm" role="form" novalidate class="form-validation">
+        <input type="hidden" name="Id" value="@Model.Movie.Id" />
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane animated fadeIn active" id="create-user-details">
+                <div class="row clearfix" style="margin-top:10px;">
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input id="MovieName" type="text" name="MovieName" value="@Model.Movie.MovieName" required maxlength="256" class="validate form-control">
+                                <label for="MovieName" class="form-label">@L("MovieName")</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input id="MovieActor" type="text" name="MovieActor" value="@Model.Movie.MovieActor" required maxlength="256" class="validate form-control">
+                                <label for="MovieActor" class="form-label">@L("MovieActor")</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input id="StartTime" type="datetime" name="StartTime" value="@Model.Movie.StartTime" class="form-control">
+                                <label for="StartTime" class="form-label">@L("StartTime")</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input id="EndTime" type="datetime" name="EndTime" value="@Model.Movie.EndTime" class="form-control">
+                                <label for="EndTime" class="form-label">@L("EndTime")</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input id="Money" type="number" name="Money" value="@Model.Movie.Money" class="form-control">
+                                <label for="Money" class="form-label">@L("Money")</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@Html.Partial("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+
+<script src="~/view-resources/Views/Movies/_EditMovieTicketModal.js" asp-append-version="true"></script>

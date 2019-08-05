@@ -7,7 +7,7 @@
 @section scripts
     {
     <script src="~/lib/jquery-daterangepicker/daterangepicker.js" asp-append-version="true"></script>
-    <script src="~/view-resources/Views/Movie/Index.js" asp-append-version="true"></script>
+    <script src="~/view-resources/Views/Movies/Index.js" asp-append-version="true"></script>
 
     <link href="~/lib/jquery-daterangepicker/daterangepicker.css" rel="stylesheet" />
     <link href="~/lib/datatables/jquery.dataTables.min.css" rel="stylesheet" />
@@ -57,7 +57,7 @@
                                 <div class="col-sm-12">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input id="MovieName" type="text" name="MovieName" required maxlength="256" class="validate form-control">
+                                            <input type="text" name="MovieName" required maxlength="256" class="validate form-control">
                                             <label for="MovieName" class="form-label">@L("MovieName")</label>
                                         </div>
                                     </div>
@@ -67,7 +67,7 @@
                                 <div class="col-sm-12">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input id="MovieActor" type="text" name="MovieActor" required maxlength="256" class="validate form-control">
+                                            <input type="text" name="MovieActor" required maxlength="256" class="validate form-control">
                                             <label for="MovieActor" class="form-label">@L("MovieActor")</label>
                                         </div>
                                     </div>
@@ -77,8 +77,8 @@
                                 <div class="col-sm-12">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input id="StartTime" type="datetime" name="StartTime" class="form-control">
-                                            @*<label for="StartTime" class="form-label">@L("StartTime")</label>*@
+                                            <input type="datetime" name="StartTime" value=" " class="form-control">
+                                            <label for="StartTime" class="form-label">@L("StartTime")</label>
                                         </div>
                                     </div>
                                 </div>
@@ -87,8 +87,8 @@
                                 <div class="col-sm-12">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input id="EndTime" type="datetime" name="EndTime" class="form-control">
-                                            @*<label for="EndTime" class="form-label">@L("EndTime")</label>*@
+                                            <input type="datetime" name="EndTime" value=" " class="form-control">
+                                            <label for="EndTime" class="form-label">@L("EndTime")</label>
                                         </div>
                                     </div>
                                 </div>
@@ -97,7 +97,7 @@
                                 <div class="col-sm-12">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input id="Money" type="number" name="Money" class="form-control">
+                                            <input type="number" name="Money" class="form-control">
                                             <label for="Money" class="form-label">@L("Money")</label>
                                         </div>
                                     </div>

@@ -115,6 +115,7 @@
     <text name="Money">票价</text>
     <text name="CreateNewMovie">创建新电影</text>
     <text name="MultiMovie">电影专栏</text>
+    <text name="EditMovie">编辑电影票</text>
   </texts>
 </localizationDictionary>
 

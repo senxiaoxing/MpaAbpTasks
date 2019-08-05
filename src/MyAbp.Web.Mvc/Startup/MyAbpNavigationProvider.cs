@@ -60,12 +60,12 @@ namespace MyAbp.Web.Startup
                         L("MultiMovie"),
                         icon: "menu"
                         ).AddItem(
-                        new MenuItemDefinition(
-                            PageNames.MovieTicket,
-                            L("Movies"),
-                            url: "MovieTicket",
-                            requiresAuthentication: true
-                            )
+                            new MenuItemDefinition(
+                                PageNames.MovieTicket,
+                                L("Movies"),
+                                url: "MovieTicket",
+                                requiresAuthentication: true
+                                )
                         )
                 )
                 .AddItem(

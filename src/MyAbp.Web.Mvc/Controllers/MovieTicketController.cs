@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MyAbp.Controllers;
 using MyAbp.Movie;
+using MyAbp.Movie.Dto;
+using MyAbp.Web.Models.MovieTicket;
 
 namespace MyAbp.Web.Mvc.Controllers
 {
@@ -21,6 +23,17 @@ namespace MyAbp.Web.Mvc.Controllers
         {
             var model = _movieTicketAppService.GetAllMovieTicket();
             return View(model);
+        }
+
+        public async Task<ActionResult> EditMovieTicketModal(int movieId)
+        {
+            var movie = await _movieTicketAppService.GetById(movieId);
+            var model = new EditMovieTicketModalViewModel
+            {
+                Movie = ObjectMapper.Map<MovieTicketDto>(movie)
+            };
+
+            return View("_EditMovieTicketModal", model);
         }
     }
 }

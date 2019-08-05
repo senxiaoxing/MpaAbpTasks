@@ -1,14 +1,14 @@
-﻿using Abp.Domain.Entities;
-using Abp.Domain.Entities.Auditing;
-using Abp.Timing;
+﻿using Abp.AutoMapper;
+using MyAbp.Authorization.MovieTickets;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace MyAbp.Authorization.MovieTickets
+namespace MyAbp.Movie.Dto
 {
-    public class MovieTicket : Entity, IHasCreationTime
+    [AutoMapTo(typeof(MovieTicket))]
+    public class MovieTicketInputDto
     {
         public const int MaxLength = 20;
 
@@ -24,12 +24,5 @@ namespace MyAbp.Authorization.MovieTickets
         public string MovieActor { get; set; }
 
         public decimal Money { get; set; }
-
-        public DateTime CreationTime { get; set; }
-
-        public MovieTicket()
-        {
-            CreationTime = Clock.Now;
-        }
     }
 }

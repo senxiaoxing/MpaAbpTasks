@@ -56,7 +56,7 @@
         $('input[name=StartTime]').daterangepicker(dateOption);
         $('input[name=EndTime]').daterangepicker(dateOption);
         $('#RefreshButton').click(function () {
-            refreshUserList();
+            refreshMovieList();
         });
       
         $('.delete-movie').click(function () {
@@ -185,28 +185,29 @@
             if (data.order && data.order.length && data.order[0]) {
                 switch (data.order[0].column) {
                     case 1:
-                        param.orderColumn = "MovieName";//数据库列名称
+                        param.sorting = "MovieName";//数据库列名称
                         break;
                     case 2:
-                        param.orderColumn = "MovieActor";//数据库列名称
+                        param.sorting = "MovieActor";//数据库列名称
                         break;
                     case 3:
-                        param.orderColumn = "StartTime";//数据库列名称
+                        param.sorting = "StartTime";//数据库列名称
                         break;
                     case 4:
-                        param.orderColumn = "EndTime";//数据库列名称
+                        param.sorting = "EndTime";//数据库列名称
                         break;
                     case 5:
-                        param.orderColumn = "Money";//数据库列名称
+                        param.sorting = "Money";//数据库列名称
                         break;
                     default:
-                        param.orderColumn = "MovieName";//数据库列名称
+                        param.sorting = "MovieName";//数据库列名称
                         break;
                 }
                 //排序方式asc或者desc
                 param.orderDir = data.order[0].dir;
             }
             //组装分页参数  
+            param.sorting = "StartTime";//数据库列名称
             param.start = data.start;
             param.length = data.length;
             param.draw = data.draw;
@@ -227,8 +228,8 @@
                     "maxDate": null,
                     singleDatePicker: true
                 };
-                $("#StartTime").WIMIDaterangepicker(dataOption);
-                $("#EndTime").WIMIDaterangepicker(dataOption1);
+                $("input[name=StartTime]").WIMIDaterangepicker(dataOption);
+                $("input[name=EndTime]").WIMIDaterangepicker(dataOption1);
             },
             initTable: function () {
                 if (!$.fn.DataTable.isDataTable("#MovieTable")) {
@@ -270,17 +271,38 @@
                                 "className": "text-center not-mobile",
                                 "createdCell": function (td, cellData, rowData, row, col) {
                                     var $actionContent = $("<div class='action-content'>");
-                                    $('<button class="btn  btn-xs">修改</button>')
+                                    $('<button class="btn  btn-xs" data-toggle="modal" data-target="#MovieTicketEditModal">修改</button>')
                                         .appendTo($actionContent)
                                         .click(function () {
-                                            alert(rowData.startTime);
-                                            console.log(rowData);
+                                            var movieId = rowData.id;
+                                            $.ajax({
+                                                url: abp.appPath + 'MovieTicket/EditMovieTicketModal?movieId=' + movieId,
+                                                type: 'POST',
+                                                contentType: 'application/html',
+                                                success: function (content) {
+                                                    $('#MovieTicketEditModal div.modal-content').html(content);
+                                                },
+                                                error: function (e) { }
+                                            });
                                         });
-                                $('<button class="btn  btn-xs"> 删除 </button>')
+                                    $('<button class="btn  btn-xs"> 删除 </button>')
                                         .appendTo($actionContent)
-                                    .click(function () {
-                                        alert(rowData.id);
-                                    });
+                                        .click(function () {
+                                            var movieId = rowData.id;
+                                            var movieName = rowData.movieName;
+                                            abp.message.confirm(
+                                                "删除电影 《" + movieName + "》？",
+                                                function (isConfirmed) {
+                                                    if (isConfirmed) {
+                                                        _movieService.deleteMovie({
+                                                            "id": movieId
+                                                        }).done(function () {
+                                                            refreshMovieList();
+                                                        });
+                                                    }
+                                                }
+                                            );
+                                        });
                                     $(td).append($actionContent);
                                }
                             },
